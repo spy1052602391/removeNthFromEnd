@@ -1,0 +1,31 @@
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) { val = x; }
+}
+
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        if(head == null){
+            return null;
+        }
+        ListNode cur = head;
+        ListNode pre = head;
+        ListNode pre1 = null;
+        int i = 0;
+        while(i++ < n){
+            cur = cur.next;
+        }
+        while(cur != null){
+            cur = cur.next;
+            pre1 = pre;
+            pre = pre.next;
+        }
+        if(pre1 == null){
+            head = head.next;
+            return head;
+        }
+        pre1.next = pre.next;
+        return head;
+    }
+}
